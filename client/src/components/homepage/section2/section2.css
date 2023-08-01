@@ -1,0 +1,11 @@
+.section2{
+    background-color: initial;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.postcard_wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
