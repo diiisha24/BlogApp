@@ -1,0 +1,33 @@
+.post_card{
+    height: 215px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 269px;
+    background-color: white;
+    border-radius: 12px;
+}
+img{
+    height: 100%;
+    width: 100%;
+    border-radius: 12px 12px 0px 0px;
+}
+.post_card_content{
+    background-color: #3d6767;
+    color: white;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    top: -10px;
+    z-index: 2;
+    border-radius: 0px 0px 12px 12px;
+}
+.post_card_date{
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.8;
+    padding: 10px 0px 0px 10px;
+}
+.post_card_description{
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px;
+}

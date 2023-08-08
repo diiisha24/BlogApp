@@ -10,6 +10,9 @@ const section2 = () => {
             <PostCard/>
             <PostCard/>
         </div>
+            <button className='sec2_button'><span>
+              Join Us!!
+              </span></button>
     </div>
   )
 }
