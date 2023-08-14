@@ -1,0 +1,51 @@
+.create_form{
+    width: 85% !important;
+}
+.create_form input{
+    width: 530px !important;
+}
+.create_form textarea{
+    height: 200px ;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    margin: 10px;
+}
+.create_form textarea:focus{
+    outline: none;
+    border: 1px solid var(--brand-color);
+}
+.create_form input[type="file"]{
+   border: 1px dashed #ccc;
+   height: 370px;
+}
+.create_form_input_wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.quill{
+    background: white ;
+    width: 530px;
+    resize: none;
+    outline: none;
+    margin: 10px;
+}
+.quill button{
+    margin-top: 0px;
+}
+.quill button::before{
+   background-color: transparent !important;
+}
+.ql-toolbar.ql-snow{
+    border-radius: 5px 5px 0px 0px;
+}
+.ql-container.ql-snow{
+    border-radius: 0px 0px 5px 5px;
+    border: 1px solid #ccc;
+}
+.ql-container{
+    height: 130px !important;
+}

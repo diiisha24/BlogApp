@@ -52,8 +52,7 @@ button span {
     transition: color 0.4s;
     color: #ffffff;
 }
-
-button:hover span {
+button:hover span{
     /* color of text on hover */
     color: var(--brand-color);
 }
