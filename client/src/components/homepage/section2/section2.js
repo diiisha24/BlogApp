@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './section2.css'
 import PostCard from './postCard'
 
-const section2 = () => {
+const Section2 = () => {
+  // useEffect(() => {
+  //   fetch('/create').then(res => {
+  //     res.json().then(posts => {
+  //       console.log(posts);
+  //     })
+  // }, [])
   return (
     <div className='section2'>
         <div className='postcard_wrapper'>
@@ -17,4 +23,4 @@ const section2 = () => {
   )
 }
 
-export default section2
+export default Section2

@@ -28,7 +28,7 @@ const LoginPage = () => {
       })
     }
     else{
-      alert("Invalid Creditails!!!");
+      alert("Invalid Creditails3!!!");
     }
   }
   if(redirect){
