@@ -1,0 +1,19 @@
+.section2{
+    background-color: initial;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -110px;
+    padding-bottom: 100px;
+}
+.postcard_wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+.sec2_button{
+   top: 135px;
+   margin: 40px;
+}
