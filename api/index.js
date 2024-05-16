@@ -27,7 +27,7 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 .then(() => console.log('MongoDB connected!!!'))
 .catch(err => console.log(err));
 
-
+// $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
     if(password === confirmPassword){
@@ -109,5 +109,6 @@ app.post('/logout', (req, res) => {
 })
 
 app.listen(4000, () => console.log('Server running on port 4000'));
+
 // 4B6DKBZ58NWSUBvI
 // mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority

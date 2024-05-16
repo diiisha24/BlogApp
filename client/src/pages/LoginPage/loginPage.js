@@ -21,12 +21,12 @@ const LoginPage = () => {
       credentials: 'include'
     })
     if (response.ok){
-      // console.log("Login Successful!!!");
+      console.log("Login Successful!!!");
       response.json().then(data => {
         setUserInfo(data);
         setRedirect(true);
       })
-    }
+  }
     else{
       alert("Invalid Creditails3!!!");
     }
@@ -53,7 +53,6 @@ const LoginPage = () => {
           <button><span>Login</span></button>
       </form>
     </div>
-
   )
 }
 

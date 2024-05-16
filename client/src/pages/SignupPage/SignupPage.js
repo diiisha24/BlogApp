@@ -22,7 +22,7 @@ const SignupPage = () => {
         window.location.href = '/login';
       }
       else{
-        alert("Registration failed!!!");
+        alert("Registration failed01!!!");
       }
   }
   return (
