@@ -14,7 +14,11 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
 
-app.use(cors({credentials: true, origin: 'https://dee-blog-app.vercel.app'}));
+app.use(cors({
+    credentials: true, 
+    origin: ['https://dee-blog-app.vercel.app'],
+    methods: ["POST", "GET"]
+}));
 app.use(express.json());
 app.use(cookieParser());
 
