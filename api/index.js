@@ -27,6 +27,9 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 .then(() => console.log('MongoDB connected!!!'))
 .catch(err => console.log(err));
 
+app.get('/', (req, res) => {
+    res.json("Home Page");
+});
 
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
