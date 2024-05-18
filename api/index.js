@@ -43,14 +43,18 @@ app.post('/signup', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { identifier, password } = req.body;
     try{
+        const isEmail = identifier.includes('@');
+        const query = isEmail ? { email: identifier } : { username: identifier };
+    
+        const user = await User.findOne(query);
+        console.log(user);
         if(user){
             const isMatch = await bycrypt.compare(password, user.password);
             if(isMatch){
                 // res.json({ user });
-                jwt.sign({username, id: user.id}, secret, {}, (err, token) => {
+                jwt.sign({username: user.username, id: user.id}, secret, {}, (err, token) => {
                     if(err) throw err;
                     res.cookie('token', token).json({
                         id: user._id,
@@ -90,12 +94,14 @@ app.post('/post', uploadMiddleware.single('file'),(req,res)=>{
     const ext = parts[parts.length - 1];
     const newPath = path + "." + ext;
     fs.renameSync(path, newPath);
+    // console.log(newPath);
     // try{
 
     // }
-    // res.json({files:req.file});
     res.json({title,summary,description});
+    
     res.cookie('token', '').json("ok");
+    alert("Post Created Successfully!!");
 })
 
 app.get('/posts', async (req, res) => {

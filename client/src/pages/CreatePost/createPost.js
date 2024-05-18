@@ -40,6 +40,7 @@ const CreatePost = () => {
       })
       if (response.ok){
         console.log('Post created successfully');
+        alert('Post created successfully');
         setRedirect(true);
       }
       console.log(await response.json());

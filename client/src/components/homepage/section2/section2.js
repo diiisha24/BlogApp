@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import './section2.css'
 import PostCard from './postCard'
+import { Link } from 'react-router-dom'
 
 const Section2 = () => {
-  // useEffect(() => {
-  //   fetch('/create').then(res => {
-  //     res.json().then(posts => {
-  //       console.log(posts);
-  //     })
-  // }, [])
+  useEffect(() => {
+    fetch('http://localhost:4000/posts').then(res => {
+      res.json(posts=>{
+        console.log(posts);
+      });
+    });
+  }, []);
   return (
     <div className='section2'>
         <div className='postcard_wrapper'>
@@ -16,9 +18,9 @@ const Section2 = () => {
             <PostCard/>
             <PostCard/>
         </div>
-            <button className='sec2_button'><span>
+            <Link to="/login" className='button sec2_button'><span>
               Join Us!!
-              </span></button>
+              </span></Link>
     </div>
   )
 }

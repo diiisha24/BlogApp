@@ -4,17 +4,24 @@ import { Navigate } from 'react-router-dom'
 import './loginPage.css'
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
   const {setUserInfo} = useContext(userContext);
 
   async function login(e){
     e.preventDefault();
+    const isEmail = identifier.includes('@');
+    console.log('Logging in with', {
+      type: isEmail ? 'email' : 'username',
+      identifier,
+      password,
+    });
     const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       body: JSON.stringify({
-        username,
+        identifier,
         password
       }),
       headers: {'Content-Type': 'application/json'},
@@ -39,10 +46,10 @@ const LoginPage = () => {
     <div className='form_wrapper'>
       <form className='form' onSubmit={login} action="">
         <div>
-          <label>Username</label><br/>
-          <input type="text" placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}/>
+          <label>Username Or Email</label><br/>
+          <input type="text" placeholder="Username or Email"
+          value={identifier}
+          onChange={e => setIdentifier(e.target.value)}/>
         </div>
         <div>
           <label>Password</label><br/>
@@ -50,7 +57,7 @@ const LoginPage = () => {
           value={password}
           onChange={e=> setPassword(e.target.value)}/>
         </div>
-          <button><span>Login</span></button>
+          <button className='button'><span>Login</span></button>
       </form>
     </div>
   )

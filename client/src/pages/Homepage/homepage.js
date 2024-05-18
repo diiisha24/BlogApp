@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Section1 from '../../components/homepage/section1/section1'
 import Section2 from '../../components/homepage/section2/section2'
 import './homepage.css'
 
-const homepage = () => {
+const Homepage = () => {
+  useEffect(() => {
+    fetch('http://localhost:4000/posts').then(res => {
+      res.json(posts=>{
+        console.log(posts);
+      });
+    });
+  }, []);
   return (
     <div>
         <Section1/>
@@ -12,4 +19,4 @@ const homepage = () => {
   )
 }
 
-export default homepage
+export default Homepage

@@ -56,7 +56,7 @@ const SignupPage = () => {
         onChange={e => setConfirm(e.target.value)}/>
   
       </div>
-        <button type='submit'><span>Register</span></button>
+        <button className='button' type='submit'><span>Register</span></button>
     </form>
   </div>
   )
