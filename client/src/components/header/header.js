@@ -9,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     // Fetch user profile data when the component mounts
-    fetch('http://localhost:4000/profile', {
+    fetch('https://dee-blog-app-api.vercel.app/profile', {
       credentials: 'include'
     })
     .then(res => {
@@ -29,7 +29,7 @@ const Header = () => {
 
   const logout = () => {
     // Send a logout request to the server
-    fetch('http://localhost:4000/logout', {
+    fetch('https://dee-blog-app-api.vercel.app/logout', {
       credentials: 'include',
       method: 'POST'
     })

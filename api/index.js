@@ -15,7 +15,11 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({
+    credentials: true, 
+    origin: ['https://dee-blog-app.vercel.app'],
+    methods: ["POST", "GET"]
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -32,19 +36,37 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 
 // $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
 
-app.get('/', async (req, res)=>{
-    try {
-        const response = await axios.get('https://dee-blog-app-api.vercel.app/');
-        res.send(`Response from external API: ${JSON.stringify(response.data)}`);
-    } catch (error) {
-        res.status(500).send(`Error fetching data from external API: ${error}`);
-    }
+// app.get('/', async (req, res)=>{
+//     try {
+//         const response = await axios.get('https://dee-blog-app-api.vercel.app/');
+//         res.send(`Response from external API: ${JSON.stringify(response.data)}`);
+//     } catch (error) {
+//         res.status(500).send(`Error fetching data from external API: ${error}`);
+//     }
+// });
+
+// app.listen(port, () => {
+//     console.log(`Server running on port ${port}`);
+// })
+
+// $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
+
+// app.get('/', async (req, res)=>{
+//     try {
+//         const response = await axios.get('https://dee-blog-app-api.vercel.app/');
+//         res.send(`Response from external API: ${JSON.stringify(response.data)}`);
+//     } catch (error) {
+//         res.status(500).send(`Error fetching data from external API: ${error}`);
+//     }
+// });
+
+// app.listen(port, () => {
+//     console.log(`Server running on port ${port}`);
+// })
+
+app.get('/', (req, res) => {
+    res.json("Home Page");
 });
-
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-})
-
 
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;

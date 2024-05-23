@@ -12,12 +12,6 @@ const LoginPage = () => {
 
   async function login(e){
     e.preventDefault();
-    const isEmail = identifier.includes('@');
-    console.log('Logging in with', {
-      type: isEmail ? 'email' : 'username',
-      identifier,
-      password,
-    });
     const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       body: JSON.stringify({
@@ -38,6 +32,7 @@ const LoginPage = () => {
       alert("Invalid Creditails3!!!");
     }
   }
+  
   if(redirect){
     return <Navigate to='/'/>
   }
