@@ -5,7 +5,7 @@ import './homepage.css'
 
 const Homepage = () => {
   useEffect(() => {
-    fetch('https://dee-blog-app-api.vercel.app/posts').then(res => {
+    fetch('http://localhost:4000/posts').then(res => {
       res.json(posts=>{
         console.log(posts);
       });

@@ -9,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     // Fetch user profile data when the component mounts
-    fetch('https://dee-blog-app-api.vercel.app/profile', {
+    fetch('http://localhost:4000/profile', {
       credentials: 'include'
     })
     .then(res => {
@@ -25,11 +25,11 @@ const Header = () => {
     .catch(error => {
       console.error(error);
     });
-  }, []);
+  }, [setUserInfo]);
 
   const logout = () => {
     // Send a logout request to the server
-    fetch('https://dee-blog-app-api.vercel.app/logout', {
+    fetch('http://localhost:4000/logout', {
       credentials: 'include',
       method: 'POST'
     })
@@ -54,13 +54,16 @@ const Header = () => {
           <div className='header_nav'>
             <Link to='/create'>Create new post</Link>
             <Link onClick={logout}>Logout</Link>
+            {/* <div>{user}</div> */}
           </div>
         ) : (
           <div className='header_nav'>
             <Link to='/login'>Login</Link>
             <Link to='/signup'>Register</Link>
-          </div>
-        )}
+          </div> 
+        )
+      }
+
       </div>
     </div>
   )

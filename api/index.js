@@ -17,9 +17,11 @@ const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
-    origin: ['https://dee-blog-app.vercel.app'],
+    // origin: ['https://dee-blog-app.vercel.app'],
+    origin: 'http://localhost:3000',
     methods: ["POST", "GET"]
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -50,14 +52,14 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 // })
 
 app.get('/', async(req, res) => {
-    // res.json("Home Page");
-    try {
-        const response = await axios.get('https://dee-blog-app-api.vercel.app/');
-        res.json("Home Page");
-        // res.send(`Response from external API: ${JSON.stringify(response.data)}`);
-    } catch (error) {
-        res.status(500).send(`Error fetching data from external API: ${error}`);
-    }
+    res.json("Home Page");
+    // try {
+    //     const response = await axios.get('https://dee-blog-app-api.vercel.app');
+    //     res.json("Home Page");
+    //     // res.send(`Response from external API: ${JSON.stringify(response.data)}`);
+    // } catch (error) {
+    //     res.status(500).send(`Error fetching data from external API: ${error}`);
+    // }
 });
 
 app.post('/signup', async (req, res) => {
