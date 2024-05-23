@@ -1,5 +1,6 @@
 const express = require('express'); 
 const cors = require('cors');
+const axios = require('axios');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const Post = require('./models/post');
@@ -18,6 +19,8 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
 
+const port = process.env.PORT || 4000;
+
 // mongoose.sync({force:true})
 // .then(()=>{
 //     console.log("Drop and re-sync db.");
@@ -28,6 +31,21 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 .catch(err => console.log(err));
 
 // $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
+
+app.get('/', async (req, res)=>{
+    try {
+        const response = await axios.get('https://dee-blog-app-api.vercel.app/');
+        res.send(`Response from external API: ${JSON.stringify(response.data)}`);
+    } catch (error) {
+        res.status(500).send(`Error fetching data from external API: ${error}`);
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+})
+
+
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
     if(password === confirmPassword){
@@ -114,7 +132,7 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json("ok");
 })
 
-app.listen(4000, () => console.log('Server running on port 4000'));
+// app.listen(4000, () => console.log('Server running on port 4000'));
 
 // 4B6DKBZ58NWSUBvI
 // mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority
