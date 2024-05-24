@@ -20,13 +20,13 @@ app.use(cors({
     // origin: ['https://dee-blog-app.vercel.app'],
     // origin: 'http://localhost:3000',
     origin:"*",
-    methods: ["POST", "GET"]
+    methods: ["POST", "GET", "PUT", "DELETE"]
 }));
 
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 
-const port = process.env.PORT || 4000;
+// const port = process.env.PORT || 4000;
 
 // mongoose.sync({force:true})
 // .then(()=>{
@@ -72,70 +72,70 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-app.post('/login', async (req, res) => {
-    const { identifier, password } = req.body;
-    try{
-        const isEmail = identifier.includes('@');
-        const query = isEmail ? { email: identifier } : { username: identifier };
+// app.post('/login', async (req, res) => {
+//     const { identifier, password } = req.body;
+//     try{
+//         const isEmail = identifier.includes('@');
+//         const query = isEmail ? { email: identifier } : { username: identifier };
     
-        const user = await User.findOne(query);
-        console.log(user);
-        if(user){
-            const isMatch = await bycrypt.compare(password, user.password);
-            if(isMatch){
-                // res.json({ user });
-                jwt.sign({username: user.username, id: user.id}, secret, {}, (err, token) => {
-                    if(err) throw err;
-                    res.cookie('token', token).json({
-                        id: user._id,
-                        username: user.username,
-                    });
-                }
-                );
-            }
-            else{
-                res.status(400).json({ error: "Invalid Credentials1!!!" });
-            }
-        }
-        else{
-            res.status(400).json({ error: "Invalid Credentials2!!!" });
-        }
-    }
-    catch(error){
-        res.status(400).json(error);
-    }
-});
+//         const user = await User.findOne(query);
+//         console.log(user);
+//         if(user){
+//             const isMatch = await bycrypt.compare(password, user.password);
+//             if(isMatch){
+//                 // res.json({ user });
+//                 jwt.sign({username: user.username, id: user.id}, secret, {}, (err, token) => {
+//                     if(err) throw err;
+//                     res.cookie('token', token).json({
+//                         id: user._id,
+//                         username: user.username,
+//                     });
+//                 }
+//                 );
+//             }
+//             else{
+//                 res.status(400).json({ error: "Invalid Credentials1!!!" });
+//             }
+//         }
+//         else{
+//             res.status(400).json({ error: "Invalid Credentials2!!!" });
+//         }
+//     }
+//     catch(error){
+//         res.status(400).json(error);
+//     }
+// });
 
-app.get('/profile', async (req, res) => {
-    const token = req.cookies.token;
-    if(token){
-        jwt.verify(token, secret,{}, async (err, info) => {
-            // if(err) throw err;
-            if(err){
-                console.log("Error",err);
-            }
-            res.json(info);
-        });
-    }
-})
+// app.get('/profile', async (req, res) => {
+//     const token = req.cookies.token;
+//     if(token){
+//         jwt.verify(token, secret,{}, async (err, info) => {
+//             // if(err) throw err;
+//             if(err){
+//                 console.log("Error",err);
+//             }
+//             res.json(info);
+//         });
+//     }
+// })
 
-app.post('/post', uploadMiddleware.single('file'),(req,res)=>{
-    // console.log(req.body);
-    const {originalname,path} = req.file;
-    const {title,summary,description} = req.body;
-    const parts = originalname.split(".");
-    const ext = parts[parts.length - 1];
-    const newPath = path + "." + ext;
-    fs.renameSync(path, newPath);
-    // console.log(newPath);
-    // try{
+// app.post('/post', uploadMiddleware.single('file'),(req,res)=>{
+//     // console.log(req.body);
+//     const {originalname,path} = req.file;
+//     const {title,summary,description} = req.body;
+//     const parts = originalname.split(".");
+//     const ext = parts[parts.length - 1];
+//     const newPath = path + "." + ext;
+//     fs.renameSync(path, newPath);
+//     // console.log(newPath);
+//     // try{
 
-    // }
-    res.json({title,summary,description});
+//     // }
+//     res.json({title,summary,description});
     
-    res.cookie('token', '').json("ok");
-    alert("Post Created Successfully!!");
-})
+//     res.cookie('token', '').json("ok");
+//     alert("Post Created Successfully!!");
+// })
 
 app.get('/posts', async (req, res) => {
     const posts = await Post.find();
@@ -143,9 +143,9 @@ app.get('/posts', async (req, res) => {
 })
 
 
-app.post('/logout', (req, res) => {
-    res.cookie('token', '').json("ok");
-})
+// app.post('/logout', (req, res) => {
+//     res.cookie('token', '').json("ok");
+// })
 
 
 // // 4B6DKBZ58NWSUBvI

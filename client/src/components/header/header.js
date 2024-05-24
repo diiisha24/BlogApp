@@ -8,33 +8,36 @@ const Header = () => {
   const {setUserInfo,userInfo} = useContext(userContext);
 
   useEffect(() => {
-    // Fetch user profile data when the component mounts
-    fetch('http://localhost:4000/profile', {
-      credentials: 'include'
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/profile', {
+          credentials: 'include'
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch user profile.');
+        }
+  
+        const userInfo = await response.json();
+        setUserInfo(userInfo);
+      } catch (error) {
+        console.error(error);
       }
-      throw new Error('Failed to fetch user profile.');
-    })
-    .then(userInfo => {
-      // setUser(data.username);
-      setUserInfo(userInfo);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    };
+  
+    fetchData();
   }, [setUserInfo]);
+  
 
-  const logout = () => {
+  const logout = async () => {
     // Send a logout request to the server
-    fetch('http://localhost:4000/logout', {
+    await fetch('http://localhost:4000/logout', {
       credentials: 'include',
       method: 'POST'
     })
     .then(() => {
       // setUser(null); // Update user state on successful logout
+      console.log('logged out!!!');
       setUserInfo(null);
       window.location.href = '/';
     })

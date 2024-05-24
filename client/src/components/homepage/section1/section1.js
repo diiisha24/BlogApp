@@ -6,24 +6,45 @@ import { Link } from 'react-router-dom';
 const Section1 = () => {
   const { setUserInfo, userInfo } = useContext(userContext);
 
+  // useEffect(() => {
+  //   // Fetch user profile data when the component mounts
+  //   fetch('http://localhost:4000/profile', {
+  //     credentials: 'include'
+  //   })
+  //   .then(res => {
+  //     if (res.ok) {
+  //       return res.json();
+  //     }
+  //     throw new Error('Failed to fetch user profile.');
+  //   })
+  //   .then(userInfo => {
+  //     setUserInfo(userInfo);
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+  //   });
+  // }, []);
   useEffect(() => {
-    // Fetch user profile data when the component mounts
-    fetch('http://localhost:4000/profile', {
-      credentials: 'include'
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/profile', {
+          credentials: 'include'
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch user profile.');
+        }
+  
+        const userInfo = await response.json();
+        setUserInfo(userInfo);
+      } catch (error) {
+        console.error(error);
       }
-      throw new Error('Failed to fetch user profile.');
-    })
-    .then(userInfo => {
-      setUserInfo(userInfo);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    };
+  
+    fetchData();
   }, [setUserInfo]);
+  
 
   const user = userInfo?.username;
 
