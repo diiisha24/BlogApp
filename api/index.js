@@ -51,7 +51,9 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 // app.listen(port, () => {
 //     console.log(`Server running on port ${port}`);
 // })
-
+app.use('/',async (req, res)=>{
+    res.send(`Server running on port ${port}`);
+})
 app.get('/', async(req, res) => {
     res.json({message: "Home Page"});
     // try {
