@@ -85,39 +85,39 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-// app.post('/login', async (req, res) => {
-//     const { identifier, password } = req.body;
-//     try{
-//         const isEmail = identifier.includes('@');
-//         const query = isEmail ? { email: identifier } : { username: identifier };
+app.post('/login', async (req, res) => {
+    const { identifier, password } = req.body;
+    try{
+        const isEmail = identifier.includes('@');
+        const query = isEmail ? { email: identifier } : { username: identifier };
     
-//         const user = await User.findOne(query);
-//         console.log(user);
-//         if(user){
-//             const isMatch = await bycrypt.compare(password, user.password);
-//             if(isMatch){
-//                 // res.json({ user });
-//                 jwt.sign({username: user.username, id: user.id}, secret, {}, (err, token) => {
-//                     if(err) throw err;
-//                     res.cookie('token', token).json({
-//                         id: user._id,
-//                         username: user.username,
-//                     });
-//                 }
-//                 );
-//             }
-//             else{
-//                 res.status(400).json({ error: "Invalid Credentials1!!!" });
-//             }
-//         }
-//         else{
-//             res.status(400).json({ error: "Invalid Credentials2!!!" });
-//         }
-//     }
-//     catch(error){
-//         res.status(400).json(error);
-//     }
-// });
+        const user = await User.findOne(query);
+        console.log(user);
+        if(user){
+            const isMatch = await bycrypt.compare(password, user.password);
+            if(isMatch){
+                // res.json({ user });
+                jwt.sign({username: user.username, id: user.id}, secret, {}, (err, token) => {
+                    if(err) throw err;
+                    res.cookie('token', token).json({
+                        id: user._id,
+                        username: user.username,
+                    });
+                }
+                );
+            }
+            else{
+                res.status(400).json({ error: "Invalid Credentials1!!!" });
+            }
+        }
+        else{
+            res.status(400).json({ error: "Invalid Credentials2!!!" });
+        }
+    }
+    catch(error){
+        res.status(400).json(error);
+    }
+});
 
 // app.get('/profile', async (req, res) => {
 //     const token = req.cookies.token;
