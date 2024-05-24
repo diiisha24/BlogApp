@@ -5,7 +5,7 @@ const cors = require('cors');
 // const User = require('./models/user');
 // const Post = require('./models/post');
 // const bycrypt = require('bcrypt');
-// const app = express();
+const app = express();
 // const jwt = require('jsonwebtoken');
 // const saltRounds = 10;
 // const salt = bycrypt.genSaltSync(saltRounds);
@@ -15,13 +15,13 @@ const cors = require('cors');
 // const uploadMiddleware = multer({ dest: 'uploads/' })
 // const fs = require('fs');
 
-app.use(cors({
-    credentials: true, 
-    // origin: ['https://dee-blog-app.vercel.app'],
-    // origin: 'http://localhost:3000',
-    origin:"*",
-    methods: ["POST", "GET"]
-}));
+// app.use(cors({
+//     credentials: true, 
+//     // origin: ['https://dee-blog-app.vercel.app'],
+//     // origin: 'http://localhost:3000',
+//     origin:"*",
+//     methods: ["POST", "GET"]
+// }));
 
 // app.use(express.json());
 // app.use(cookieParser());
