@@ -4,11 +4,11 @@
 // const mongoose = require('mongoose');
 // const User = require('./models/user');
 // const Post = require('./models/post');
-// const bycrypt = require('bcrypt');
+const bycrypt = require('bcrypt');
 // const app = express();
 // const jwt = require('jsonwebtoken');
-// const saltRounds = 10;
-// const salt = bycrypt.genSaltSync(saltRounds);
+const saltRounds = 10;
+const salt = bycrypt.genSaltSync(saltRounds);
 // const secret = 'deeewrldfwbblogspotcom';
 // const cookieParser = require('cookie-parser');
 // const multer = require('multer');
@@ -26,16 +26,19 @@ const jwt = require('jsonwebtoken');
 const secret = 'deeewrldfwbblogspotcom';
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
-const uploadMiddleware = multer({ dest: 'uploads/' });
+const uploadMiddleware = multer({ dest: './uploads/' });
 const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
     // origin: ['https://dee-blog-app.vercel.app'],
-    // origin: 'http://localhost:3000',
-    origin: "*",
-    methods: ["POST", "GET", "PUT", "DELETE"]
+    origin: 'http://localhost:3000',
+    // origin: "*",
+    methods: ["POST", "GET"]
 }));
+
+app.use(express.json());
+app.use(cookieParser());
 
 
 // app.use(cors({
@@ -180,8 +183,7 @@ connectToDatabase();
 
 // // 4B6DKBZ58NWSUBvI
 // // mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority
-app.use(express.json());
-app.use(cookieParser());
+
 
 const port = process.env.PORT || 4000;
 
