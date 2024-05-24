@@ -27,9 +27,6 @@ const secret = 'deeewrldfwbblogspotcom';
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
-// const multer = require('multer');
-// const uploadMiddleware = multer({ dest: './uploads/' });
-// const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
@@ -38,30 +35,9 @@ app.use(cors({
     // origin: "*",
     methods: ["POST", "GET"]
 }));
-
+app.use(fileUpload());
 app.use(express.json());
 app.use(cookieParser());
-
-
-// app.use(cors({
-//     credentials: true, 
-//     // origin: ['https://dee-blog-app.vercel.app'],
-//     // origin: 'http://localhost:3000',
-//     origin:"*",
-//     methods: ["POST", "GET", "PUT", "DELETE"]
-// }));
-
-// // app.use(express.json());
-// // app.use(cookieParser());
-
-// // const port = process.env.PORT || 4000;
-
-// // mongoose.sync({force:true})
-// // .then(()=>{
-// //     console.log("Drop and re-sync db.");
-// // })
-// app.listen(4000, () => console.log('Server running on port 4000'));
-
 
 async function connectToDatabase() {
     try {
