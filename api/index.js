@@ -1,19 +1,19 @@
 const express = require('express'); 
 const cors = require('cors');
-const axios = require('axios');
-const mongoose = require('mongoose');
-const User = require('./models/user');
-const Post = require('./models/post');
-const bycrypt = require('bcrypt');
-const app = express();
-const jwt = require('jsonwebtoken');
-const saltRounds = 10;
-const salt = bycrypt.genSaltSync(saltRounds);
-const secret = 'deeewrldfwbblogspotcom';
-const cookieParser = require('cookie-parser');
-const multer = require('multer');
-const uploadMiddleware = multer({ dest: 'uploads/' })
-const fs = require('fs');
+// const axios = require('axios');
+// const mongoose = require('mongoose');
+// const User = require('./models/user');
+// const Post = require('./models/post');
+// const bycrypt = require('bcrypt');
+// const app = express();
+// const jwt = require('jsonwebtoken');
+// const saltRounds = 10;
+// const salt = bycrypt.genSaltSync(saltRounds);
+// const secret = 'deeewrldfwbblogspotcom';
+// const cookieParser = require('cookie-parser');
+// const multer = require('multer');
+// const uploadMiddleware = multer({ dest: 'uploads/' })
+// const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
@@ -23,8 +23,8 @@ app.use(cors({
     methods: ["POST", "GET"]
 }));
 
-app.use(express.json());
-app.use(cookieParser());
+// app.use(express.json());
+// app.use(cookieParser());
 
 const port = process.env.PORT || 4000;
 
@@ -33,9 +33,9 @@ const port = process.env.PORT || 4000;
 //     console.log("Drop and re-sync db.");
 // })
 
-mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
-.then(() => console.log('MongoDB connected!!!'))
-.catch(err => console.log(err));
+// mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
+// .then(() => console.log('MongoDB connected!!!'))
+// .catch(err => console.log(err));
 
 // $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
 
@@ -51,9 +51,9 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 // app.listen(port, () => {
 //     console.log(`Server running on port ${port}`);
 // })
-app.use('/',async (req, res)=>{
-    res.send(`Server running on port ${port}`);
-})
+// app.use('/',async (req, res)=>{
+//     res.send(`Server running on port ${port}`);
+// })
 app.get('/', async(req, res) => {
     res.json({message: "Home Page"});
     // try {
