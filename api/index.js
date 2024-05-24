@@ -18,7 +18,8 @@ const fs = require('fs');
 app.use(cors({
     credentials: true, 
     // origin: ['https://dee-blog-app.vercel.app'],
-    origin: 'http://localhost:3000',
+    // origin: 'http://localhost:3000',
+    origin:"*",
     methods: ["POST", "GET"]
 }));
 
@@ -114,7 +115,10 @@ app.get('/profile', async (req, res) => {
     const token = req.cookies.token;
     if(token){
         jwt.verify(token, secret,{}, async (err, info) => {
-            if(err) throw err;
+            // if(err) throw err;
+            if(err){
+                console.log("Error",err);
+            }
             res.json(info);
         });
     }
