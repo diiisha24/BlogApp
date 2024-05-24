@@ -23,7 +23,7 @@ app.use(cors({
     methods: ["POST", "GET", "PUT", "DELETE"]
 }));
 
-app.use(express.json());
+// app.use(express.json());
 // app.use(cookieParser());
 
 // const port = process.env.PORT || 4000;
@@ -58,19 +58,19 @@ app.get('/api', async(req, res) => {
     res.json({message: "Home Page"});
 });
 
-app.post('/signup', async (req, res) => {
-    const { username, email, password, confirmPassword } = req.body;
-    if(password === confirmPassword){
-        const hashedPassword = await bycrypt.hash(password, salt);
-        try{
-                const user = await User.create({ username, email, password: hashedPassword});
-                res.json({ user });
-        }
-        catch(error){
-            res.status(400).json(error);
-        }
-    }
-});
+// app.post('/signup', async (req, res) => {
+//     const { username, email, password, confirmPassword } = req.body;
+//     if(password === confirmPassword){
+//         const hashedPassword = await bycrypt.hash(password, salt);
+//         try{
+//                 const user = await User.create({ username, email, password: hashedPassword});
+//                 res.json({ user });
+//         }
+//         catch(error){
+//             res.status(400).json(error);
+//         }
+//     }
+// });
 
 // app.post('/login', async (req, res) => {
 //     const { identifier, password } = req.body;
