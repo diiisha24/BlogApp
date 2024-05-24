@@ -1,19 +1,19 @@
 const express = require('express'); 
 const cors = require('cors');
-const axios = require('axios');
-const mongoose = require('mongoose');
-const User = require('./models/user');
-const Post = require('./models/post');
-const bycrypt = require('bcrypt');
+// const axios = require('axios');
+// const mongoose = require('mongoose');
+// const User = require('./models/user');
+// const Post = require('./models/post');
+// const bycrypt = require('bcrypt');
 const app = express();
-const jwt = require('jsonwebtoken');
-const saltRounds = 10;
-const salt = bycrypt.genSaltSync(saltRounds);
-const secret = 'deeewrldfwbblogspotcom';
-const cookieParser = require('cookie-parser');
-const multer = require('multer');
-const uploadMiddleware = multer({ dest: 'uploads/' })
-const fs = require('fs');
+// const jwt = require('jsonwebtoken');
+// const saltRounds = 10;
+// const salt = bycrypt.genSaltSync(saltRounds);
+// const secret = 'deeewrldfwbblogspotcom';
+// const cookieParser = require('cookie-parser');
+// const multer = require('multer');
+// const uploadMiddleware = multer({ dest: 'uploads/' })
+// const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
@@ -137,10 +137,10 @@ app.get('/api', async(req, res) => {
 //     alert("Post Created Successfully!!");
 // })
 
-app.get('/posts', async (req, res) => {
-    const posts = await Post.find();
-    res.json(posts);
-})
+// app.get('/posts', async (req, res) => {
+//     const posts = await Post.find();
+//     res.json(posts);
+// })
 
 
 // app.post('/logout', (req, res) => {
