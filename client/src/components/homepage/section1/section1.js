@@ -27,7 +27,7 @@ const Section1 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/profile', {
+        const response = await fetch('https://dee-blog-app-api.vercel.app/profile', {
           credentials: 'include'
         });
   
@@ -43,7 +43,7 @@ const Section1 = () => {
     };
   
     fetchData();
-  }, [setUserInfo]);
+  }, []);
   
 
   const user = userInfo?.username;

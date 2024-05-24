@@ -8,7 +8,7 @@ const SignupPage = () => {
   async function register(e){
       e.preventDefault();
       // console.log('register called!', username, email, password, confirmPassword);
-      const response = await fetch('http://localhost:4000/signup', {
+      const response = await fetch('https://dee-blog-app-api.vercel.app/signup', {
         method: 'POST',
         body: JSON.stringify({
           username,

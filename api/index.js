@@ -30,11 +30,10 @@ const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
-    // origin: ['https://dee-blog-app.vercel.app'],
-    origin: 'http://localhost:3000',
-    // origin: "*",
+    origin: ['https://dee-blog-app.vercel.app', 'http://localhost:3000'],
     methods: ["POST", "GET"]
 }));
+
 app.use(fileUpload());
 app.use(express.json());
 app.use(cookieParser());

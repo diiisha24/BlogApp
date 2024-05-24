@@ -26,7 +26,7 @@ const Header = () => {
     };
   
     fetchData();
-  }, [setUserInfo]);
+  }, []);
   
 
   const logout = async () => {
