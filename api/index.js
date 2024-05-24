@@ -53,7 +53,7 @@ mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.
 // })
 
 app.get('/', async(req, res) => {
-    res.json("Home Page");
+    res.json({message: "Home Page"});
     // try {
     //     const response = await axios.get('https://dee-blog-app-api.vercel.app');
     //     res.json("Home Page");
