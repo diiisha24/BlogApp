@@ -25,9 +25,11 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const secret = 'deeewrldfwbblogspotcom';
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
-const uploadMiddleware = multer({ dest: './uploads/' });
+const fileUpload = require('express-fileupload');
 const fs = require('fs');
+// const multer = require('multer');
+// const uploadMiddleware = multer({ dest: './uploads/' });
+// const fs = require('fs');
 
 app.use(cors({
     credentials: true, 
@@ -259,15 +261,31 @@ app.get('/profile', async (req, res) => {
     }
 });
 
-app.post('/post', uploadMiddleware.single('file'), (req, res) => {
-    const { originalname, path } = req.file;
+app.post('/post', (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
+
+    // Get the uploaded file
+    let uploadedFile = req.files.file;
     const { title, summary, description } = req.body;
-    const parts = originalname.split(".");
+
+    // Get the file extension
+    const parts = uploadedFile.name.split(".");
     const ext = parts[parts.length - 1];
-    const newPath = path + "." + ext;
-    fs.renameSync(path, newPath);
-    res.json({ title, summary, description });
-    // Add your database save logic here
+    const newPath = './uploads/' + uploadedFile.md5 + "." + ext;
+
+    // Move the file to the new path
+    uploadedFile.mv(newPath, function(err) {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        // Respond with the details
+        res.json({ title, summary, description, filePath: newPath });
+        
+        // Add your database save logic here
+    });
 });
 
 app.get('/posts', async (req, res) => {
