@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 // const axios = require('axios');
 // const mongoose = require('mongoose');
-// const User = require('./models/user');
-// const Post = require('./models/post');
-// const bycrypt = require('bcrypt');
+const User = require('./models/user');
+const Post = require('./models/post');
+const bycrypt = require('bcrypt');
 const app = express();
 // const jwt = require('jsonwebtoken');
 // const saltRounds = 10;
@@ -58,19 +58,19 @@ app.get('/api', async(req, res) => {
     res.json({message: "Home Page"});
 });
 
-// app.post('/signup', async (req, res) => {
-//     const { username, email, password, confirmPassword } = req.body;
-//     if(password === confirmPassword){
-//         const hashedPassword = await bycrypt.hash(password, salt);
-//         try{
-//                 const user = await User.create({ username, email, password: hashedPassword});
-//                 res.json({ user });
-//         }
-//         catch(error){
-//             res.status(400).json(error);
-//         }
-//     }
-// });
+app.post('/signup', async (req, res) => {
+    const { username, email, password, confirmPassword } = req.body;
+    if(password === confirmPassword){
+        const hashedPassword = await bycrypt.hash(password, salt);
+        try{
+                const user = await User.create({ username, email, password: hashedPassword});
+                res.json({ user });
+        }
+        catch(error){
+            res.status(400).json(error);
+        }
+    }
+});
 
 // app.post('/login', async (req, res) => {
 //     const { identifier, password } = req.body;
