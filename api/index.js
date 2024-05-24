@@ -15,13 +15,13 @@ const app = express();
 // const uploadMiddleware = multer({ dest: 'uploads/' })
 // const fs = require('fs');
 
-// app.use(cors({
-//     credentials: true, 
-//     // origin: ['https://dee-blog-app.vercel.app'],
-//     // origin: 'http://localhost:3000',
-//     origin:"*",
-//     methods: ["POST", "GET"]
-// }));
+app.use(cors({
+    credentials: true, 
+    // origin: ['https://dee-blog-app.vercel.app'],
+    // origin: 'http://localhost:3000',
+    origin:"*",
+    methods: ["POST", "GET"]
+}));
 
 // app.use(express.json());
 // app.use(cookieParser());
@@ -56,13 +56,6 @@ const port = process.env.PORT || 4000;
 // })
 app.get('/api', async(req, res) => {
     res.json({message: "Home Page"});
-    // try {
-    //     const response = await axios.get('https://dee-blog-app-api.vercel.app');
-    //     res.json("Home Page");
-    //     // res.send(`Response from external API: ${JSON.stringify(response.data)}`);
-    // } catch (error) {
-    //     res.status(500).send(`Error fetching data from external API: ${error}`);
-    // }
 });
 
 // app.post('/signup', async (req, res) => {
