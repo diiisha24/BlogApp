@@ -1,7 +1,7 @@
 const express = require('express'); 
 const cors = require('cors');
 // const axios = require('axios');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const User = require('./models/user');
 // const Post = require('./models/post');
 const bycrypt = require('bcrypt');
@@ -33,9 +33,9 @@ app.use(cors({
 //     console.log("Drop and re-sync db.");
 // })
 app.listen(4000, () => console.log('Server running on port 4000'));
-// mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
-// .then(() => console.log('MongoDB connected!!!'))
-// .catch(err => console.log(err));
+mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
+.then(() => console.log('MongoDB connected!!!'))
+.catch(err => console.log(err));
 
 // $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
 
@@ -58,19 +58,19 @@ app.get('/api', async(req, res) => {
     res.json({message: "Home Page"});
 });
 
-app.post('/signup', async (req, res) => {
-    const { username, email, password, confirmPassword } = req.body;
-    if(password === confirmPassword){
-        const hashedPassword = await bycrypt.hash(password, salt);
-        try{
-                const user = await User.create({ username, email, password: hashedPassword});
-                res.json({ user });
-        }
-        catch(error){
-            res.status(400).json(error);
-        }
-    }
-});
+// app.post('/signup', async (req, res) => {
+//     const { username, email, password, confirmPassword } = req.body;
+//     if(password === confirmPassword){
+//         const hashedPassword = await bycrypt.hash(password, salt);
+//         try{
+//                 const user = await User.create({ username, email, password: hashedPassword});
+//                 res.json({ user });
+//         }
+//         catch(error){
+//             res.status(400).json(error);
+//         }
+//     }
+// });
 
 // app.post('/login', async (req, res) => {
 //     const { identifier, password } = req.body;
