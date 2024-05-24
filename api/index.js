@@ -33,9 +33,9 @@ const port = process.env.PORT || 4000;
 //     console.log("Drop and re-sync db.");
 // })
 app.listen(4000, () => console.log('Server running on port 4000'));
-mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
-.then(() => console.log('MongoDB connected!!!'))
-.catch(err => console.log(err));
+// mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
+// .then(() => console.log('MongoDB connected!!!'))
+// .catch(err => console.log(err));
 
 // $2b$10$71u3.hJckqaZ4TzJGu/LxuaL0Qun21wLxqB0TbfY37zG7Gj1c5.2m
 
