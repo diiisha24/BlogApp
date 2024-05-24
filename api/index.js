@@ -54,7 +54,7 @@ const port = process.env.PORT || 4000;
 // app.use('/',async (req, res)=>{
 //     res.send(`Server running on port ${port}`);
 // })
-app.get('/', async(req, res) => {
+app.get('/api', async(req, res) => {
     res.json({message: "Home Page"});
     // try {
     //     const response = await axios.get('https://dee-blog-app-api.vercel.app');
