@@ -4,11 +4,11 @@
 // const mongoose = require('mongoose');
 // const User = require('./models/user');
 // const Post = require('./models/post');
-const bycrypt = require('bcrypt');
+// const bycrypt = require('bcrypt');
 // const app = express();
 // const jwt = require('jsonwebtoken');
-const saltRounds = 10;
-const salt = bycrypt.genSaltSync(saltRounds);
+// const saltRounds = 10;
+// const salt = bycrypt.genSaltSync(saltRounds);
 // const secret = 'deeewrldfwbblogspotcom';
 // const cookieParser = require('cookie-parser');
 // const multer = require('multer');
