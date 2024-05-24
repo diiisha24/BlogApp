@@ -32,7 +32,7 @@ const port = process.env.PORT || 4000;
 // .then(()=>{
 //     console.log("Drop and re-sync db.");
 // })
-
+app.listen(4000, () => console.log('Server running on port 4000'));
 mongoose.connect("mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority")
 .then(() => console.log('MongoDB connected!!!'))
 .catch(err => console.log(err));
@@ -147,7 +147,6 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json("ok");
 })
 
-app.listen(4000, () => console.log('Server running on port 4000'));
 
 // // 4B6DKBZ58NWSUBvI
 // // mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority
