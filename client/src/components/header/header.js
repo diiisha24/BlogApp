@@ -10,7 +10,7 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/profile', {
+        const response = await fetch('https://dee-blog-app-api.vercel.app/profile', {
           credentials: 'include'
         });
   
@@ -31,7 +31,7 @@ const Header = () => {
 
   const logout = async () => {
     // Send a logout request to the server
-    await fetch('http://localhost:4000/logout', {
+    await fetch('https://dee-blog-app-api.vercel.app/logout', {
       credentials: 'include',
       method: 'POST'
     })
