@@ -1,28 +1,51 @@
-import React, { useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import './section2.css'
 import PostCard from './postCard'
 import { Link } from 'react-router-dom'
 
 const Section2 = () => {
+  const [posts,setPosts] = useState([]);
   useEffect(() => {
-    
-    fetch('https://dee-blog-app-api.vercel.app/posts').then(res => {
-      // fetch('http://localhost:4000/posts').then(res => {
-      res.json(posts=>{
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/posts');
+        const posts = await res.json();
+        setPosts(posts);
         console.log(posts);
-      });
-    });
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
   }, []);
+
+
   return (
     <div className='section2'>
         <div className='postcard_wrapper'>
+            {/* <PostCard/>
             <PostCard/>
-            <PostCard/>
-            <PostCard/>
+            <PostCard/> */}
+            {posts.length === 0 ? (
+              <p>Loading...</p>
+            ) : (
+              // posts.slice(0, 3).map((post) => (
+              //   <div key={post.id}>
+              //     <h2>{post.title}</h2>
+              //     <p>{post.body}</p>
+              //   </div>
+              // ))
+              posts.slice(0,3).map(post =>(
+                <PostCard {...post}/> 
+              ))
+            )}
         </div>
-            <Link to="/login" className='button sec2_button'><span>
+        <div>
+          <Link to="/login" className='button sec2_button'><span>
               Join Us!!
               </span></Link>
+        </div>
     </div>
   )
 }

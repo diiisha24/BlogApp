@@ -1,12 +1,13 @@
 .post_card{
     height: 215px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     width: 269px;
     background-color: white;
-    border-radius: 12px;
+    /* border-radius: 12px; */
 }
 .post_card:hover{
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
     transform: scale(1.02);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -14,32 +15,35 @@
 img{
     height: 100%;
     width: 100%;
-    border-radius: 12px 12px 0px 0px;
+    /* border-radius: 12px 12px 0px 0px; */
 }
 .post_card_content{
-    background-color: #3d6767;
-    color: white;
+    background-color: white;
+    color: black;
     width: 100%;
     position: relative;
     top: -10px;
     z-index: 2;
     padding: 10px;
-    border-radius: 0px 0px 12px 12px;
+    /* border-radius: 0px 0px 12px 12px; */
 }
 .post_card_date{
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 700;
     opacity: 0.8;
+    color: #3e3e3e;
     /* padding: 10px 0px 0px 10px; */
 }
 .post_card_title{
-    font-size: 16px;
+    color: var(--brand-color);
+    font-size: 18px;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     padding: 10px 0px 6px 0px;
 }
 .post_card_description{
+    color: #3e3e3e;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0px 10px 0px 0px;
 }

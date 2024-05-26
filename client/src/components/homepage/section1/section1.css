@@ -5,7 +5,8 @@
     align-items: center;
     justify-content: center;
     padding: 50px 0px;
-    background-color: var(--bg-color);
+    /* background-image: url('client/public/images/blog_circle.png'); */
+    /* background-color: var(--bg-color); */
 }
 .sec1_heading{
     font-size: 40px;
@@ -16,7 +17,7 @@
 }
 .sec1_main{
     padding: 30px;
-    font-size: 16px;
+    font-size: 19px;
     max-width: 650px;
     text-align: center;
     font-weight: 600;
