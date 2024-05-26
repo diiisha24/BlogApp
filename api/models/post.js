@@ -24,7 +24,13 @@ const postSchema = new Schema({
         },
     cover:{
         type: String,
-    }
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref:'User',
+        required: true,
+    },
+
 },{
     timestamps: true
 });
