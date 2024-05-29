@@ -17,6 +17,7 @@ const cookieParser = require('cookie-parser');
 // const uploadMiddleware = multer({ dest: 'uploads/' })
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 app.use(cors({
@@ -133,7 +134,25 @@ app.post('/post', async (req, res) => {
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
     }
-  
+    const uploadsDir = path.resolve(__dirname, './uploads');
+    const filePath = path.join(uploadsDir, 'c065772029dcdf290aca99a96ce186af.png');
+
+    if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+    
+    fs.open(filePath, 'r', (err, fd) => {
+        if (err) {
+            if (err.code === 'ENOENT') {
+                console.error('File not found:', filePath);
+            } else {
+                console.error('An error occurred:', err);
+            }
+            return;
+        }
+        console.log('File opened successfully');
+        // You can now read from the file using the file descriptor `fd`
+    });
     // Get the uploaded file
     let uploadedFile = req.files.file;
     const { title, summary, content } = req.body;
