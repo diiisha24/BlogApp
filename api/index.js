@@ -137,12 +137,12 @@ app.post('/post', async (req, res) => {
     // Get the uploaded file
     let uploadedFile = req.files.file;
     const { title, summary, content } = req.body;
-
+  
     // Get the file extension
     const parts = uploadedFile.name.split(".");
     const ext = parts[parts.length - 1];
     const newPath = './uploads/' + uploadedFile.md5 + "." + ext;
-   
+  
     // Move the file to the new path
     uploadedFile.mv(newPath, async (err) => {
       if (err) {
@@ -181,6 +181,72 @@ app.post('/post', async (req, res) => {
       }
     });
   });
+
+// app.post('/post', async (req, res) => {
+//     console.log("Headers:", req.headers);
+//     console.log("Body:", req.body);
+  
+//     if (!req.files || Object.keys(req.files).length === 0) {
+//       return res.status(400).send('No files were uploaded.');
+//     }
+  
+//     // Get the uploaded file
+//     let uploadedFile = req.files.file;
+//     const { title, summary, content } = req.body;
+
+//     // Get the file extension
+//     const parts = uploadedFile.name.split(".");
+//     console.log("Extension", parts[0], parts[1]);
+//     const ext = parts[parts.length - 1];
+//     const newPath = path.join(__dirname, 'uploads', `${uploadedFile.md5}.${ext}`);
+
+//     console.log("Uploading", newPath);
+//     // Ensure the uploads directory exists
+//     const uploadsDir = path.join(__dirname, 'uploads');
+//     if (!fs.existsSync(uploadsDir)) {
+//       fs.mkdirSync(uploadsDir);
+//     }
+
+//     // Move the file to the new path
+//     uploadedFile.mv(newPath, async (err) => {
+//       if (err) {
+//         console.error("File move error:", err);
+//         return res.status(500).send(err);
+//       }
+  
+//       // Create a new post and save to the database
+//       try {
+//         // Check if token is present
+//         const token = req.cookies.token;
+//         if (token) {
+//           jwt.verify(token, secret, async (err, info) => {
+//             if (err) {
+//               console.error("Token verification error:", err);
+//               return res.status(400).json({ error: "Token verification failed" });
+//             } 
+
+//             try {
+//               const post = await Post.create({ title, summary, content, cover: newPath, author: info.id });
+//               // Respond with the details
+//               res.json({ info, post, title, summary, content, filePath: newPath, author: info.id });
+//             } catch (err) {
+//               if (err.name === 'ValidationError') {
+//                 console.error("Validation error:", err);
+//                 return res.status(400).json({ errors: err.errors });
+//               }
+//               console.error("Database error:", err);
+//               return res.status(500).send("Internal server error");
+//             }
+//           });
+//         } else {
+//           return res.status(401).json({ error: "No token provided" });
+//         }
+//       } catch (err) {
+//         console.error("Unexpected error:", err);
+//         return res.status(500).send("Internal server error");
+//       }
+//     });
+//   });
 
 
 app.get('/posts', async (req, res) => {
