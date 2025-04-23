@@ -1,63 +1,79 @@
-import React, { useContext, useState } from 'react'
-import { userContext } from '../../context/userContext'
-import { Navigate } from 'react-router-dom'
-import './loginPage.css'
+import React, { useContext, useState } from 'react';
+import { userContext } from '../../context/userContext';
+import { Navigate } from 'react-router-dom';
+import './loginPage.css';
 
 const LoginPage = () => {
-  // const [username, setUsername] = useState('');
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const {setUserInfo} = useContext(userContext);
+  const [loading, setLoading] = useState(false);
+  const { setUserInfo } = useContext(userContext);
 
-  async function login(e){
+  async function login(e) {
     e.preventDefault();
-    const response = await fetch('https://dee-blog-app-api.vercel.app/login', {
+    setLoading(true);
     
-    // const response = await fetch('http://localhost:4000/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        identifier,
-        password
-      }),
-      headers: {'Content-Type': 'application/json'},
-      credentials: 'include'
-    })
-    if (response.ok){
-      console.log("Login Successful!!!");
-      response.json().then(data => {
+    try {
+      const response = await fetch('https://dee-blog-app-api.vercel.app/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          identifier,
+          password
+        }),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      });
+
+      if (response.ok) {
+        console.log("Login Successful!!!");
+        const data = await response.json();
         setUserInfo(data);
         setRedirect(true);
-      })
-  }
-    else{
-      alert("Invalid Creditails3!!!");
+      } else {
+        alert("Invalid Credentials!");
+      }
+    } catch (err) {
+      alert("An error occurred. Please try again.");
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   }
 
-  if(redirect){
-    return <Navigate to='/'/>
+  if (redirect) {
+    return <Navigate to='/' />;
   }
 
   return (
     <div className='form_wrapper'>
-      <form className='form' onSubmit={login} action="">
+      <form className='form' onSubmit={login}>
         <div>
-          <label>Username Or Email</label><br/>
-          <input type="text" placeholder="Username or Email"
-          value={identifier}
-          onChange={e => setIdentifier(e.target.value)}/>
+          <label>Username Or Email</label><br />
+          <input
+            type="text"
+            placeholder="Username or Email"
+            value={identifier}
+            onChange={e => setIdentifier(e.target.value)}
+            required
+          />
         </div>
         <div>
-          <label>Password</label><br/>
-          <input type="password" placeholder="Password" 
-          value={password}
-          onChange={e=> setPassword(e.target.value)}/>
+          <label>Password</label><br />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+          />
         </div>
-          <button className='button'><span>Login</span></button>
+        <button className='button' type='submit' disabled={loading}>
+          <span>{loading ? 'Logging in...' : 'Login'}</span>
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

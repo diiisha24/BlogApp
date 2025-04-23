@@ -1,6 +1,6 @@
 const express = require('express'); 
 const cors = require('cors');
-const axios = require('axios');
+// const axios = require('axios');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const Post = require('./models/post');

@@ -4,12 +4,13 @@ import { userContext } from '../../context/userContext';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const { userInfo, setUserInfo } = useContext(userContext);
+  const { setUserInfo, userInfo } = useContext(userContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/profile', {
+        // const response = await fetch('http://localhost:4000/profile', {
+        const response = await fetch('https://dee-blog-app-api.vercel.app/profile', {
           credentials: 'include',
         });
 
@@ -48,7 +49,7 @@ const Header = () => {
     }
   };
 
-  const user = setUserInfo?.username;
+  const user = userInfo?.username;
 
   return (
     <div className='header'>
