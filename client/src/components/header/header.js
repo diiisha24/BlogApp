@@ -4,7 +4,7 @@ import { userContext } from '../../context/userContext';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const { setUserInfo, userInfo } = useContext(userContext);
+  const { userInfo, setUserInfo } = useContext(userContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +48,7 @@ const Header = () => {
     }
   };
 
-  const user = userInfo?.username;
+  const user = setUserInfo?.username;
 
   return (
     <div className='header'>

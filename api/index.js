@@ -22,7 +22,7 @@ require('dotenv').config();
 
 app.use(cors({
     credentials: true, 
-    origin: ['https://dee-blog-app.vercel.app', 'http://localhost:3000'],
+    origin: ['https://dee-blog-app.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
     // origin:"*",
     methods: ["POST", "GET"]
 }));
@@ -33,6 +33,7 @@ app.use(cookieParser());
 
 async function connectToDatabase() {
     try {
+        console.log('Connecting to MongoDB...');
         const mongooseResponse = await mongoose.connect(
             "mongodb+srv://gargdisha1420:4B6DKBZ58NWSUBvI@cluster0.rh8joey.mongodb.net/?retryWrites=true&w=majority", 
             { useNewUrlParser: true, useUnifiedTopology: true }
@@ -64,9 +65,10 @@ const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
-app.get('/api', async(req, res) => {
-    res.json({ message: "Home Page" });
+app.get('/', async(req, res) => {
+    res.json({ message: "Api is working fine" });
 });
+
 
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;

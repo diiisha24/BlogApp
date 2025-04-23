@@ -40,7 +40,9 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await fetch('https://dee-blog-app-api.vercel.app/post', {
+      // const response = await fetch('https://dee-blog-app-api.vercel.app/post', {
+        const response = await fetch('http://localhost:4000/post', {
+      // const response = await fetch(' https://blog-9m08rqmhi-disha-gargs-projects.vercel.app/post', {
         method: 'POST',
         body: data,
         credentials: 'include'
